@@ -1,0 +1,32 @@
+<div class="ms-webpos">
+    <div id="o-wrapper" class="o-wrapper  wrap-checkout-page" data-bind="scope:'webpos.container'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <nav id="c-menu--push-left" class="c-menu c-menu--push-left" data-bind="scope:'webpos.menu'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </nav>
+</div>
+<script type="text/x-magento-init">
+   {
+       "*": {
+           "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout(); ?>
+       }
+   }
+</script>
+
+<script>
+    require(
+        [
+            'mage/url'
+        ], function (url) {
+            return url.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getBaseUrl();?>');
+        });
+
+    <?php $config = $block->getWebposConfig(); ?>
+    window.webposConfig = <?php /* @escapeNotVerified */ echo \Zend_Json::encode($config); ?>;
+//    require([
+//        'Bkademy_Webpos/js/model/observer'
+//    ], function (observer) {
+//        observer.processEvent();
+//    });
+</script>
